@@ -1,0 +1,15 @@
+{
+  "name": "cod-creativos",
+  "owner": { "name": "David" },
+  "metadata": {
+    "description": "Marketplace de cod-creativos — investigación, landings y videos para e-commerce COD.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "cod-creativos",
+      "source": "./",
+      "description": "Investigación de anuncios, landings en Shopify y videos con voz para tiendas contraentrega."
+    }
+  ]
+}
