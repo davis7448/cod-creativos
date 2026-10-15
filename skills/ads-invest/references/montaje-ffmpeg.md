@@ -44,7 +44,17 @@ build MM04 voz/vo_MM04.wav musica/music_MM04.wav MM_VN04_regalo_navidad_CON_VOZ
 - `-nostdin` es obligatorio (sin él, ffmpeg se come el heredoc). `printf "%.3f"` evita decimales como `.96` que ffmpeg no lee.
 - Antes de rearmar: respaldar la versión anterior en `final/con_voz/v1_<origen>/`.
 
+### Lecciones de montaje
+- **Siempre correr dentro de `bash <<'EOF'`.** En zsh, `[$j:v]` revienta ("bad math expression"), porque `:v` se lee como un modificador.
+- **Ninguna escena puede durar más que su clip.** La función usa `-stream_loop -1`, así que un clip corto se repite y se nota. Hay dos salidas: partir la frase en dos clips, o cortar subclips del stock con su propio inicio: `ffmpeg -ss <ini> -t <dur> -i stock/x.mp4 -an -vf "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30" clips/stk_x_a.mp4`.
+- **Video sin voz (macro):** voz `anullsrc` → `voz/silencio.wav`, y la música sube de 0,15 a ~0,9 (se parametriza el `volume=` de la función).
+- **Tarjeta final** = portada 1:1 de la landing (con los packs) sobre un lienzo 1080×1920, más un overlay PNG transparente con el botón "Pídelo aquí abajo 👇".
+- Algunas builds de ffmpeg no traen `drawtext`: los rótulos se generan en PNG con Playwright.
+- **`-ss` necesita un cero adelante:** `bc -l` da `.76`, que ffmpeg rechaza. Se envuelve en `printf "%.2f"`.
+- **Hoja de inventario antes de armar listas:** un fotograma central de cada clip (`tile=10x2`) para saber qué muestra cada archivo.
+
 ## QA
+- **La imagen no puede contradecir el mensaje.** Si una toma muestra el producto doblándose, no va sobre una frase que dice "firme".
 - Duración de cada mp4 = fin de la última escena.
 - Un fotograma en el centro de cada escena nueva (`-ss t -frames:v 1 -vf scale=216:384` → `hstack`): revisar que **la imagen coincida con el subtítulo** y que el producto no esté deformado.
 - Si se cambió la voz: transcribir con whisper y comparar con el guion. Si solo cambió la imagen, el audio queda igual.

@@ -43,6 +43,13 @@ Detalle operativo de las Reglas 0, 0b y 1. El SKILL.md dice QUÉ hacer; esto dic
 - La API `ads_library_search` con términos genéricos trae ruido (dramas, apps); úsala para marcas y page_ids, no para descubrir.
 - El resultado grande de un `run_code` se guarda en archivo: léelo con python sobre `### Result\n"…"` (doble `json.loads`).
 
+## Instagram (reels y posts sin sesión)
+1. Abrir `https://www.instagram.com/<reel|p>/<shortcode>/embed/captioned/` en Playwright. Se ven, sin login, la cuenta, los seguidores, los likes, el caption y la cantidad de comentarios (`document.body.innerText`).
+2. Video: `document.querySelector('video').src` (cdn `fbcdn.net`, firmado y temporal). Los carruseles de solo imágenes no traen `<video>`.
+3. Descarga: `run_code` no tiene `require` ni `fs`, y `globalThis` no persiste. Hay que devolver `id + url`, sacarlos del jsonl de la sesión con `grep -o '[A-Za-z0-9_-]\{11\} https://instagram[^ "\\]*'` y bajarlos con `curl -L -H "Referer: https://www.instagram.com/" -A "Mozilla/5.0"`.
+4. Transcripción: `mlx_whisper.transcribe(f, path_or_hf_repo='mlx-community/whisper-large-v3-turbo')` en Mac (o `openai-whisper`/`faster-whisper` en PC). Los videos de carrusel pueden venir sin audio: para esos se arma una hoja de fotogramas.
+5. Las listas en pantalla se leen mejor en el último fotograma: `-sseof -1.5`.
+
 ## Hook SDD (fuera de repos con arnés)
 - Bloquea escribir archivos con shell/python (`> log.txt`, `open(...).write`). Usa `>/dev/null` para salidas y Write/Edit para `.md`. curl/ffmpeg/codex escribiendo media sí pasan.
 - HTML y JSON necesitan escotilla: ver [[entrega-artifact]].

@@ -85,6 +85,22 @@ El usuario quiere **replicar creativos ya mismo**, y eso solo sirve con el produ
    - **Material de fábrica para el b-roll:** el video de la galería del listing de AliExpress del SKU exacto suele traer tomas limpias (personas usando el producto, detalles, macro). Ábrelo en Playwright y lee `document.querySelectorAll('video')` → `src` → curl. **Verifica la versión con fotogramas**: en un caso real, 7 de 9 listings "iguales" eran otra versión del producto y uno traía la marca de otra tienda estampada. Si el mismo plano aparece en cuentas de creadores o competidores (con su marca de agua o subtítulos), no es material de fábrica.
    - Documenta cada archivo en `INDEX-CREATIVOS.md` (qué es, si es gemelo o similar, qué tomar).
 
+## ⭐ REGLA 4b — Elegir FORMATOS con el catálogo (siempre, al cerrar la investigación)
+
+Lee [references/formatos.md](references/formatos.md) (la copia de trabajo, que el usuario va ampliando, vive en `<carpeta de trabajo>/FORMATOS.md`). El plan de testeo del Artifact sale como **matriz ángulo × formato**:
+- Cada anuncio lleva un solo ángulo, y cada ángulo va en varios formatos. Mínimo 3 ángulos × 4 formatos: video con voz, video sin voz, estático nativo y estático de argumento.
+- Siempre al menos una pieza TOFU, que no se apaga aunque venda caro.
+- Por cada celda: ángulo, formato, etapa, gancho y el material con el que se produce.
+
+Cada guion sigue la estructura **gancho (0–3 s, en 3 capas: imagen, texto y voz) → cuerpo (agitar, mecanismo, prueba, objeción) → CTA (oferta real, riesgo cero, instrucción y tarjeta)**. Los anuncios se nombran `PRODUCTO_ANGULO_FORMATO_GANCHO_v`.
+
+La primera prueba sigue la **metodología RECON**:
+- 4 ángulos base (dolor, identidad, oportunidad y autoridad) × ganchos, con la misma audiencia.
+- De 5 a 7 días, con gasto parejo (entrega push o ABO).
+- Al ganador se lo pasa a la campaña principal.
+
+Los formatos de video con IA se marcan "⏳ pendiente" si no hay herramienta de video conectada. Las reseñas, la escasez y las estadísticas salen de datos reales del producto o de la operación, nunca inventados.
+
 ## ⭐ REGLA 5 — Si el usuario pide videos o imágenes propias para testear
 
 **Material permitido (no negociable):** fotos y videos del proveedor o la fábrica + escenas generadas con Codex + **stock licenciado** (el que diga `CONFIG-TIENDA.md`, p. ej. Magnific/Freepik; solo para escenas de contexto, nunca donde la voz nombra el producto) + material grabado por el usuario. **Nunca** pautar ni usar como b-roll videos de competidores o creadores, aunque el usuario lo pida: son referencia de estructura. Alternativas: videos del proveedor con el guion de la referencia, grabar una unidad, o licenciar al creador.
