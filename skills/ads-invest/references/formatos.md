@@ -31,6 +31,23 @@ Es un sistema para probar creativos con datos en vez de intuición.
 - **MOFU (consideración):** comparativas, demostración y objeciones.
 - **BOFU (cierre):** oferta, reseñas, urgencia real y remarketing (las conversiones más baratas de la cuenta).
 
+## Cómo elegir: de la investigación al formato
+⚠️ **No se copia la parrilla del producto anterior.** El procedimiento completo (puntos, reglas duras y radar de formatos nuevos) está en [seleccion-formatos.md](seleccion-formatos.md). Lo usado y sus resultados se anotan en `REGISTRO-FORMATOS.md`.
+
+| Lo que muestra la investigación | Formato que toca |
+|---|---|
+| Un anuncio PROBADO (≥ 90 días) o viral (> 1 M de vistas) con un formato claro | **Ese formato, obligatorio**, en nuestra versión |
+| El avatar no sabe que tiene el problema (los comentarios preguntan "¿eso es normal?") | Educativo TOFU · titular de noticia · búsqueda de Google |
+| El avatar conoce el problema y busca solución | Problema → solución · testimonio/UGC · demostración · primera vez |
+| Hay muchas alternativas y el avatar compara | Nosotros vs. ellos · mito vs. realidad · tier list · lo que tienes vs. lo que puedes tener |
+| La competencia gana por precio o contraentrega | Unboxing contraentrega · ticket · oferta/bundle · precio por día |
+| El producto tiene varias piezas o modos | Tutorial · diagrama · macro con textos |
+| El producto se demuestra en segundos | Demostración · macro · ASMR · antes/después (con material real) |
+| Compra para otro (hijo, pareja, regalo) | Chat de WhatsApp · pack ×2 "uno para…" · regalo perfecto |
+| Hay escasez o demora REAL (lote, importación) | Carta de disculpa · poco stock |
+| Comentarios con objeciones repetidas | No compres esto (si…) · mito vs. realidad · FAQ en historia |
+| Hay un experto real hablando del tema (orgánico) | Experto / green screen sobre su captura (sin usar su cara en el anuncio) |
+
 ## A. Video con voz
 | Formato | Qué es | Etapa | Cómo lo producimos |
 |---|---|---|---|
@@ -42,6 +59,10 @@ Es un sistema para probar creativos con datos en vez de intuición.
 | **Podcast / dualcast IA** | Dos voces conversando sobre el problema | TOFU | Dos voces OmniVoice; imagen fija o b-roll ⚠️ sin avatar de video |
 | **Objeto parlante** | El producto habla en primera persona | MOFU | Voz + clips de fábrica; ⚠️ sin animación generada |
 | **Antes / después** | Mostrar la transformación, no explicarla | MOFU | Solo con material real; ⚠️ nada inventado ni de salud sin fuente |
+| **Primera vez / reacción** | "Esta soy yo usándolo por primera vez": sorpresa honesta | TOFU | Voz + clips de uso del proveedor + subtítulos nativos (irrigador: TikTok MX, 30 M) |
+| **Reverso en video** | "Me da pena con los que compraron esto…" y giro al precio o la ventaja | TOFU | Voz + texto grande + producto (irrigador: TikTok US, 17 M) |
+| **Tutorial / cómo se usa** | "Te voy a enseñar a usarlo": paso a paso o para qué sirve cada parte | MOFU | Voz + primeros planos (irrigador: TikTok MX, 5,8 M) |
+| **Unboxing** | Abrir la caja, mostrar lo que trae y el pago contra entrega | MOFU-BOFU | Clips del proveedor o imagen de la caja real + voz o texto (irrigador: anuncio de Meta PROBADO, 2 años) |
 
 ## B. Video sin voz
 | Formato | Qué es | Etapa | Cómo lo producimos |
@@ -86,6 +107,16 @@ Se arman en HTML con Playwright, igual que la portada: texto exacto y sin errore
 
 ## E. Video generado con IA (requiere herramienta de video conectada)
 Claymation (plastilina), esqueleto IA, estilo Zack D Films 3D, objeto parlante animado, avatar UGC, podcast con avatar. **Sí van**, pero hoy no hay una herramienta de video conectada. Mientras tanto, en la matriz se marcan como "⏳ pendiente de herramienta" y se produce la versión con voz + fábrica + stock.
+
+## 🆕 Formatos descubiertos por la investigación
+> Los agrega la investigación en cada ronda (radar de formatos: Paso 0 de [seleccion-formatos.md](seleccion-formatos.md)). Estados: 🆕 descubierto → 🧪 en prueba → ✅ validado (pasa a su sección A–E) · ❌ no funcionó · 🚫 vetado por el usuario. Las muestras se guardan en `<carpeta de trabajo>/formatos/descubiertos/`.
+
+| Formato | Qué es | Etapa | Cómo lo producimos | Referencia y evidencia | Hallado en | Estado |
+|---|---|---|---|---|---|---|
+| Unboxing contraentrega | Abrir el paquete, mostrar lo que trae y "pagué al recibir" | MOFU-BOFU | Imagen de la caja real o clips del proveedor + voz o texto | Anuncio de Meta, PROBADO (2 años) | Irrigador bucal | 🆕 (ya en la sección A) |
+| Primera vez usándolo | Sorpresa honesta de alguien que lo usa por primera vez | TOFU | Voz + clips de uso + subtítulos nativos | TikTok MX (anuncio), 30,4 M | Irrigador bucal | 🆕 (ya en la sección A) |
+| Reverso en video | "Me da pena con los que compraron esto…" y giro al precio | TOFU | Voz + texto grande + producto | TikTok US (anuncio), 17 M | Irrigador bucal | 🆕 (ya en la sección A) |
+| Tutorial / para qué sirve cada parte | "Te voy a enseñar a usarlo", pieza por pieza | MOFU | Voz + primeros planos | TikTok MX (anuncio), 5,8 M | Irrigador bucal | 🧪 en prueba |
 
 ## Ángulos (lista de @keko_mkt, DbWsocPPw6P)
 El dolor que resuelve · antes y después · lo que dice un cliente real · lo que dice un experto · por qué es distinto a la competencia · el mito desmentido · el error del que no lo usa · la objeción n.º 1 · para quién no es · precio por día · qué pasa a los 7, 14 y 30 días · cómo se hace · la rutina donde encaja · el regalo perfecto · qué pasa si no lo compras · la historia de por qué lo creamos · el material que nadie más usa · queda poco stock (solo si es verdad).

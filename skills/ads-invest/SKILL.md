@@ -87,6 +87,20 @@ El usuario quiere **replicar creativos ya mismo**, y eso solo sirve con el produ
 
 ## ⭐ REGLA 4b — Elegir FORMATOS con el catálogo (siempre, al cerrar la investigación)
 
+**El formato lo elige la investigación, no la costumbre.** Si no, cada producto sale con la misma parrilla del anterior. Procedimiento obligatorio en [references/seleccion-formatos.md](references/seleccion-formatos.md):
+0. **Descubrir formatos nuevos (radar en cada ronda):** los 10 anuncios más longevos de la categoría, los 5 TikTok top y 5 anuncios PROBADOS de otras categorías de contraentrega. Lo que no encaje en el catálogo y sea repetible se agrega a `FORMATOS.md` → "🆕 Formatos descubiertos", con referencia y muestra, y se le avisa al usuario (que puede vetarlo).
+1. **Etiquetar el formato** de cada referencia en `LINKS.md` (columna Formato) → tabla "Formatos del mercado" con puntos de evidencia.
+2. **Puntuar el catálogo** para este producto: evidencia + encaje + nivel de conciencia + material − rotación ± historial de `REGISTRO-FORMATOS.md` (plantilla en `templates/`).
+3. **Reglas duras:**
+   - ≥ 50 % de los formatos con una referencia real de la investigación;
+   - máximo 4 repetidos del producto anterior;
+   - un formato por ángulo;
+   - ≥ 3 familias por ángulo;
+   - el formato más fuerte del mercado va siempre;
+   - 1 comodín nuevo por ronda.
+4. **`MATRIZ.md` con la columna "Por qué este formato"** (referencia y puntos) y la lista de descartados. Se le muestra al usuario antes de producir.
+5. **Registrar** en `REGISTRO-FORMATOS.md` al publicar, y completar el resultado en la lectura.
+
 Lee [references/formatos.md](references/formatos.md) (la copia de trabajo, que el usuario va ampliando, vive en `<carpeta de trabajo>/FORMATOS.md`). El plan de testeo del Artifact sale como **matriz ángulo × formato**:
 - Cada anuncio lleva un solo ángulo, y cada ángulo va en varios formatos. Mínimo 3 ángulos × 4 formatos: video con voz, video sin voz, estático nativo y estático de argumento.
 - Siempre al menos una pieza TOFU, que no se apaga aunque venda caro.
@@ -266,9 +280,10 @@ Son **21 secciones en orden fijo**: primero lo de la landing (A: resumen, avatar
 2c. **(Regla 0d) Mercado local** → tabla de precios en `PRODUCTO.md`. Pedir el costo real antes de proponer packs.
 2d. **(Regla 0e) Landings extranjeras** → `LANDINGS.md`.
 3. Buscar competidores NUEVOS con `ads_library_search` (marcas, términos en inglés y en el idioma del país). Sacar page_ids y volúmenes.
+3a. **(Regla 4b, Paso 0) Radar de formatos:** 5 anuncios PROBADOS de otras categorías de contraentrega (hogar, belleza, mascotas, juguetes), buscados por "pago contra entrega" y ordenados por días activos. Solo interesa su **formato**.
 3b. **(Regla 3) Similares por ingrediente/mecanismo.**
 4. **Filtrar contra el registro.**
-5. Clasificar y rankear. Asignar PROBADO / INDICIO / SIN PROBAR.
+5. Clasificar y rankear. Asignar PROBADO / INDICIO / SIN PROBAR **y el FORMATO** de cada referencia (nombre del catálogo o `🆕`).
 6. Extraer copy de los mejores (WebFetch).
 7. **Descargar tú mismo los videos**, verificarlos con fotogramas y fichar cada uno en `INDEX-CREATIVOS.md`.
 8. **Entregar los links en el chat** (Regla 1).
@@ -276,7 +291,7 @@ Son **21 secciones en orden fijo**: primero lo de la landing (A: resumen, avatar
 10. **Actualizar `REGISTRO-INVESTIGACION.md`.**
 11. **(Regla 4) Publicar o actualizar la INVESTIGACIÓN CREATIVA COMPLETA.**
 
-> ⚠️ Una ronda NO está terminada si: no hay tabla de mercado local (0d), no se analizaron landings extranjeras (0e), el producto no está verificado (0), el usuario no recibió links clicables, el registro no tiene los `ad_id`, o la investigación creativa completa (4) no está publicada.
+> ⚠️ Una ronda NO está terminada si: no hay tabla de mercado local (0d), no se analizaron landings extranjeras (0e), el producto no está verificado (0), el usuario no recibió links clicables, el registro no tiene los `ad_id`, la investigación creativa completa (4) no está publicada, **la matriz no tiene "Formatos del mercado" y la columna "Por qué este formato", repite más de 4 formatos del producto anterior, o no se corrió el radar de formatos ni se le reportaron al usuario los nuevos (aunque sean cero) (4b)**.
 
 ## Reglas de costo y estilo
 
