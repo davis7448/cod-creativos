@@ -3,7 +3,7 @@
   "owner": { "name": "David" },
   "metadata": {
     "description": "Marketplace de cod-creativos — investigación, landings y videos para e-commerce COD.",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
     {

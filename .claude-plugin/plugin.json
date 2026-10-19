@@ -1,6 +1,6 @@
 {
   "name": "cod-creativos",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Investigación de anuncios (Meta Ad Library, TikTok, AliExpress), landings en Shopify y videos con voz para e-commerce contraentrega (COD). Cada tienda se configura con setup-creativos; los datos viven en CONFIG-TIENDA.md.",
   "author": { "name": "David" },
   "license": "MIT",
