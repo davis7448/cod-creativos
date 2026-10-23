@@ -5,10 +5,15 @@
 ## 1. Guion
 - Cada video copia la **estructura** de UNA referencia (gemelo o top): transcribe con whisper → adapta a los claims ✅ de `PRODUCTO.md`.
 - Léxico natural del país de la tienda, números escritos con letras y precios reales. Sin "antes" ficticio.
+- Cada guion lleva su **avatar** (quién habla: edad, región, personalidad, dónde se graba) y se escribe como habla esa persona: de corrido, narrando lo que muestra, no como ficha técnica.
 - Guiones, voz y escenas por video en `<producto>/media/ronda-a-<producto>/GUIONES-RONDA-A.md` (tabla: video · ángulo · voz · instruct/speed; guion; escenas; estado).
 - **Dos formatos que ganan en productos COD:** (a) testimonio en primera persona (mamá/papá/cliente) y (b) macro sin voz de 7–11 s con texto en pantalla y música.
 
-## 2. Voz — OmniVoice
+## 2. Voz — un avatar, una voz (VoxCPM2)
+- **Motor recomendado: VoxCPM2** con el método de [voces-voxcpm2.md](voces-voxcpm2.md): ficha del avatar → guion UGC de corrido → voz base diseñada por descripción (acento y personalidad del avatar) → actuación frase por frase clonando esa voz → pausas a mano → sonido de celular. Meta medible: ≤ 6 pausas/min y ≥ 17 semitonos de rango, como un creador real.
+- Lo de abajo es el respaldo con OmniVoice.
+
+### Respaldo — OmniVoice
 - Instalación, API, etiquetas válidas, errores conocidos y validación: [voces-omnivoice.md](voces-omnivoice.md).
 - **Guion completo en UNA sola llamada** con `instruct` + `speed`. Así la voz no cambia a mitad del video.
 - **Nunca `teenager`**: sale vacío o con un pito. Para una voz juvenil: `female, young adult, moderate pitch`, `speed` 1,1–1,15.

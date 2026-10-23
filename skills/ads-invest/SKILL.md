@@ -126,9 +126,10 @@ En video, la demostración del uso va en los **primeros 3–5 s**, no al final. 
 
 **Material permitido (no negociable):** fotos y videos del proveedor o la fábrica + escenas generadas con Codex + **stock licenciado** (el que diga `CONFIG-TIENDA.md`, p. ej. Magnific/Freepik; solo para escenas de contexto, nunca donde la voz nombra el producto) + material grabado por el usuario. **Nunca** pautar ni usar como b-roll videos de competidores o creadores, aunque el usuario lo pida: son referencia de estructura. Alternativas: videos del proveedor con el guion de la referencia, grabar una unidad, o licenciar al creador.
 
-Pipeline probado: guion por referencia → voz OmniVoice (guion completo en una llamada) → validación y tiempos por palabra con whisper → música propia (`scripts/gen_music.py`) → subtítulos PNG → b-roll de fábrica + stock + imágenes Codex → función `build` de ffmpeg → QA con fotogramas → **mostrar al usuario** → Shopify Files → Meta por API. Detalle:
+Pipeline probado: guion por referencia → **avatar con voz propia en VoxCPM2** (voz base diseñada por descripción + actuación frase por frase) → validación y tiempos por palabra con whisper → música propia (`scripts/gen_music.py`) → subtítulos PNG → b-roll de fábrica + stock + imágenes Codex → función `build` de ffmpeg → QA con fotogramas → **mostrar al usuario** → Shopify Files → Meta por API. Detalle:
 - Guion, voz, música, material, stock y QA: [references/produccion-creativos.md](references/produccion-creativos.md).
-- Voces (instalación, API, errores conocidos y cómo arreglar una frase sin regenerar todo): [references/voces-omnivoice.md](references/voces-omnivoice.md).
+- **Voces por avatar (motor recomendado):** cada guion tiene un avatar (edad, región, personalidad) y el avatar tiene su propia voz con acento acorde; guion en estilo UGC de corrido y actuación dirigida frase por frase: [references/voces-voxcpm2.md](references/voces-voxcpm2.md).
+- Respaldo con OmniVoice (instalación, API, errores conocidos): [references/voces-omnivoice.md](references/voces-omnivoice.md).
 - Montaje con ffmpeg (función lista para copiar) y subida a Meta paso a paso: [references/montaje-ffmpeg.md](references/montaje-ffmpeg.md).
 - Clips de uso con IA cuando el material del proveedor no muestra el producto en uso: Claude arma el Space de Magnific (imagen inicial fiel + prompt + modelo) y **el usuario genera** con sus modelos ilimitados: [references/video-ia-spaces.md](references/video-ia-spaces.md).
 
