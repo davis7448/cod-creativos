@@ -44,7 +44,8 @@ D = "Una mujer colombiana común de treinta años de Medellín grabándose con e
 a = np.concatenate([np.array(r.audio) for r in m.generate(text=GUION, instruct=D, inference_timesteps=12, cfg_value=2.0)])
 sf.write("base.wav", a, 48000)
 ```
-Haz 2–3 descripciones y que el usuario elija. La elegida se recorta (8–10 s limpios) a `voz_<avatar>.wav`: **esa es la voz del personaje** y se guarda junto al producto para reusarla en todas sus piezas. VoxCPM2 no tiene `speed`; el ritmo sale de la descripción.
+**Control de tono (obligatorio):** el modelo tiende a voces graves; con "mujer" a secas salieron voces de 115–150 Hz que el usuario oyó "como de hombre". Pon el género en la voz misma ("voz claramente femenina de tono medio-alto" o "voz masculina de tono medio"), genera **4 candidatas** y mide la mediana de F0 con `librosa.pyin`: mujer 185–240 Hz (ideal ~210), hombre 100–140 Hz. Quédate con la que caiga en rango. En el paso 4, descarta las tomas de frase que se salgan del rango (mujer < 175 Hz) y repite hasta tener 2 válidas.
+Que el usuario elija entre las candidatas en rango. La elegida se recorta (8–10 s limpios) a `voz_<avatar>.wav`: **esa es la voz del personaje** y se guarda junto al producto para reusarla en todas sus piezas. VoxCPM2 no tiene `speed`; el ritmo sale de la descripción.
 
 ## Paso 4 — Actuación dirigida frase por frase (lo que da la expresividad)
 Partir el guion en frases cortas, cada una con su emoción, **clonando la voz base** (`ref_audio`) para que el hablante no cambie:
