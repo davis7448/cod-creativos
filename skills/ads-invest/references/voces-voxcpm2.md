@@ -45,7 +45,8 @@ a = np.concatenate([np.array(r.audio) for r in m.generate(text=GUION, instruct=D
 sf.write("base.wav", a, 48000)
 ```
 **Control de tono (obligatorio):** el modelo tiende a voces graves; con "mujer" a secas salieron voces de 115–150 Hz que el usuario oyó "como de hombre". Pon el género en la voz misma ("voz claramente femenina de tono medio-alto" o "voz masculina de tono medio"), genera **4 candidatas** y mide la mediana de F0 con `librosa.pyin`: mujer 185–240 Hz (ideal ~210), hombre 100–140 Hz. Quédate con la que caiga en rango. En el paso 4, descarta las tomas de frase que se salgan del rango (mujer < 175 Hz) y repite hasta tener 2 válidas.
-Que el usuario elija entre las candidatas en rango. La elegida se recorta (8–10 s limpios) a `voz_<avatar>.wav`: **esa es la voz del personaje** y se guarda junto al producto para reusarla en todas sus piezas. VoxCPM2 no tiene `speed`; el ritmo sale de la descripción.
+**El tono no basta:** una voz a 215 Hz sonó "de hombre" (el timbre manda). Filtro definitivo: clasificador de género `prithivMLmods/Common-Voice-Gender-Detection` (wav2vec2, Apache-2.0, `AutoModelForAudioClassification`, etiquetas 0=female/1=male) en el entorno de OmniVoice (tiene torch). Calibrado contra el oído del usuario: las voces que oyó "de hombre" dieron P(mujer)=0,00 y las aceptadas 0,77–1,00. Regla: candidatas y tomas de frase con **P(género del avatar) ≥ 0,9**. De 16 candidatas "femeninas" por descripción, 9 salieron masculinas: genera 8 (4 descripciones × 2) y filtra.
+Que el usuario **escuche y elija la voz base antes** de actuar el guion completo (muestras de ~10 s): así no se gastan 15 min actuando una voz que no le gusta. La elegida se recorta (8–10 s limpios) a `voz_<avatar>.wav`: **esa es la voz del personaje** y se guarda junto al producto para reusarla en todas sus piezas. VoxCPM2 no tiene `speed`; el ritmo sale de la descripción.
 
 ## Paso 4 — Actuación dirigida frase por frase (lo que da la expresividad)
 Partir el guion en frases cortas, cada una con su emoción, **clonando la voz base** (`ref_audio`) para que el hablante no cambie:
@@ -73,7 +74,7 @@ Por frase, en este orden: (1) whisper dice **exactamente** la frase (similitud �
 ```bash
 ffmpeg -i voz.wav -af "highpass=f=140,lowpass=f=9500,aecho=0.85:0.6:18|31:0.12|0.07,acompressor=threshold=-20dB:ratio=3,loudnorm=I=-16" -ar 48000 voz_celular.wav
 ```
-Si el total queda largo, `atempo=1.08–1.12` (no cambia el tono). Entrega al usuario las variantes limpia / celular / rápida y deja que elija.
+Si el total queda largo, `atempo=1.08–1.12` (no cambia el tono). Con 1,2 el usuario dijo que "dejó de sonar natural": no pasar de 1,12; si sigue largo, recorta pausas o acorta el guion. Entrega al usuario las variantes limpia / celular / rápida y deja que elija.
 
 ## Tiempos de referencia (M1/M2, 8 GB, 4-bit)
 Guion de 25 s en una llamada: 50–90 s. Actuación de 11 frases × 2 tomas: ~10–12 min (correr en segundo plano y vigilar con Monitor).
