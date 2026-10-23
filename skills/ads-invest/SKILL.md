@@ -113,7 +113,14 @@ La primera prueba sigue la **metodología RECON**:
 - De 5 a 7 días, con gasto parejo (entrega push o ABO).
 - Al ganador se lo pasa a la campaña principal.
 
-Los formatos de video con IA se marcan "⏳ pendiente" si no hay herramienta de video conectada. Las reseñas, la escasez y las estadísticas salen de datos reales del producto o de la operación, nunca inventados.
+Los formatos de video con IA se producen con Magnific Spaces si está conectado ([references/video-ia-spaces.md](references/video-ia-spaces.md)); si no, se marcan "⏳ pendiente". Las reseñas, la escasez y las estadísticas salen de datos reales del producto o de la operación, nunca inventados.
+
+**⭐ Todo anuncio explica el producto (aprendido el 2026-10-23).** El formato decora, no reemplaza la explicación. En una RECON de un producto nuevo para el mercado, el usuario rechazó como "0 explicativos" el texto sobre negro, el titular de noticia, la pantalla dividida, la historia de IG, el precio por día, el tipo TikTok y el unboxing armados sin mostrar qué hace el producto. Solo se salvaron la demostración en video y 3 estáticos con el producto visible. Por eso cada pieza, sea del formato que sea, lleva:
+- el **producto visible y reconocible**;
+- **una línea de mecanismo** (qué hace y cómo: "6 bolsas de aire que aprietan + calor en la frente");
+- el **beneficio**.
+
+En video, la demostración del uso va en los **primeros 3–5 s**, no al final. Antes de mostrar al usuario, haz la **prueba de los 2 segundos**: tapa el logo y pregúntate "¿se entiende qué vende y qué hace?". Si no, rehazlo. Cuanto menos conozca el mercado el producto (nadie lo vende en el país), más pesa esta regla.
 
 ## ⭐ REGLA 5 — Si el usuario pide videos o imágenes propias para testear
 
@@ -123,6 +130,7 @@ Pipeline probado: guion por referencia → voz OmniVoice (guion completo en una 
 - Guion, voz, música, material, stock y QA: [references/produccion-creativos.md](references/produccion-creativos.md).
 - Voces (instalación, API, errores conocidos y cómo arreglar una frase sin regenerar todo): [references/voces-omnivoice.md](references/voces-omnivoice.md).
 - Montaje con ffmpeg (función lista para copiar) y subida a Meta paso a paso: [references/montaje-ffmpeg.md](references/montaje-ffmpeg.md).
+- Clips de uso con IA cuando el material del proveedor no muestra el producto en uso: Claude arma el Space de Magnific (imagen inicial fiel + prompt + modelo) y **el usuario genera** con sus modelos ilimitados: [references/video-ia-spaces.md](references/video-ia-spaces.md).
 
 La **landing** del producto (packshot, 7 piezas, GIFs, Shopify, packs) es otra skill: `landing-cod`.
 

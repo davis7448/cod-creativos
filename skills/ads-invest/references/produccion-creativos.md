@@ -34,13 +34,19 @@
 - En títulos dentro del PNG: verifica que no se partan en dos líneas encima de la foto (`white-space:nowrap` + tamaño ajustado).
 
 ## 7. B-roll de stock (escenas de contexto)
-- Ejemplo con Magnific/Freepik (MCP): `stock_search` con `content_type: video`, `orientation: portrait` y la consulta en inglés ("bored student studying notebook", "father and son building at home"). Revisa en el plan del usuario si el stock premium gasta créditos; **generar video con IA sí cobra**, no se usa salvo que el usuario lo pida.
+- Ejemplo con Magnific/Freepik (MCP): `stock_search` con `content_type: video`, `orientation: portrait` y la consulta en inglés ("bored student studying notebook", "father and son building at home"). Revisa en el plan del usuario si el stock premium gasta créditos; **generar video con IA desde el MCP sí cobra**: si el usuario tiene modelos ilimitados en la app, Claude arma el Space y el usuario genera ([video-ia-spaces.md](video-ia-spaces.md)).
 - Elegir: bajar las miniaturas a una carpeta propia y armar una hoja con `xstack` (en zsh se escribe `${i}` y no `$i:` dentro del filtro). Después, 8 fotogramas por clip para escoger el tramo.
 - Descargar: `stock_download` (`type: video`, `max_bytes: 20000000`) → `curl` → recortar a `clips/stk_<escena>.mp4` con `-ss <inicio> -t 4 -vf "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,setsar=1" -an`.
 - **Regla de oro:** el stock no trae el producto. Solo va en escenas de contexto (problema, persona, emoción, regalo). Si en esa frase la voz nombra el producto, la escena lleva material del proveedor. Y el stock tiene que **coincidir con la frase**: un obrero con casco sobre fondo de color bajo "el taladro de papá" se rechazó por fuera de contexto.
 
 ## 8. Escenas con Codex (si falta material)
 `codex exec --skip-git-repo-check -s workspace-write -C <dir> -i ref1 -i ref2 -- "Use your image generation tool… copy the generated image into the current working directory as X.png" >/dev/null 2>&1`. El producto SIEMPRE fiel a la foto real. Varias en paralelo con `&` + `wait`.
+- Si el video tiene que mostrar el producto **en movimiento** (cómo se pone, cómo funciona) y el proveedor no trae esa toma, las imágenes de Codex sirven de primer fotograma para clips con IA en Magnific Spaces: [video-ia-spaces.md](video-ia-spaces.md).
+
+## 8b. Estáticos (sin escribir HTML a disco)
+- Se componen en el navegador: un servidor local de la carpeta de medios (`npx -y http-server <media> -p <puerto> -s` en segundo plano) y, en Playwright, `document.open(); document.write(html); document.close()` con las imágenes por ruta relativa → `page.screenshot` a 1080×1350 (4:5) y 1080×1920 (9:16, con los 340 px de abajo libres). Así no hace falta guardar archivos HTML (que un arnés puede bloquear).
+- Subtítulos de video transparentes con el mismo truco y `omitBackground: true`.
+- Antes de mostrarlos: una hoja con todos en miniatura (`hstack`/`vstack`) y la **prueba de los 2 segundos** de la Regla 4b: producto visible + línea de mecanismo + beneficio en cada pieza. Errores vistos: la tarjeta del producto tapando la píldora de envío, texto quemado de otra imagen asomándose en un recorte y espacio en blanco al final de una tabla.
 
 ## 9. QA y entrega
 - Fotogramas en el centro de cada escena: producto sin deformar, imagen que coincide con el subtítulo, voz sin claims ❌, **uso correcto** del producto (la IA puso a una profe escribiendo con marcadores de papel en un tablero → falso).

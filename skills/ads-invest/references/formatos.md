@@ -117,6 +117,10 @@ Claymation (plastilina), esqueleto IA, estilo Zack D Films 3D, objeto parlante a
 | Primera vez usándolo | Sorpresa honesta de alguien que lo usa por primera vez | TOFU | Voz + clips de uso + subtítulos nativos | TikTok MX (anuncio), 30,4 M | Irrigador bucal | 🆕 (ya en la sección A) |
 | Reverso en video | "Me da pena con los que compraron esto…" y giro al precio | TOFU | Voz + texto grande + producto | TikTok US (anuncio), 17 M | Irrigador bucal | 🆕 (ya en la sección A) |
 | Tutorial / para qué sirve cada parte | "Te voy a enseñar a usarlo", pieza por pieza | MOFU | Voz + primeros planos | TikTok MX (anuncio), 5,8 M | Irrigador bucal | 🧪 en prueba |
+| Se lo hice a mi pareja / mamá | POV usando el producto en otra persona y mostrando su reacción ("mi novio quedó feliz"); vende a quien compra para regalar | TOFU | Voz en primera persona + clip de la otra persona usándolo (Codex o video IA) | Anuncio de Meta CO de belleza, PROBADO (570 días) | Masajeador de cabeza (radar) | 🆕 |
+| Mapa del dolor | La zona del cuerpo marcada en rojo (o anatomía 3D) y el producto actuando justo ahí | TOFU | Imagen con las zonas marcadas + el producto visible y su mecanismo; ⚠️ zonas de sensación, sin diagnóstico | Anuncio de Meta CO de calzado, PROBADO (439 días) | Masajeador de cabeza (radar) | 🆕 |
+
+⚠️ **Cualquier formato de esta tabla o del catálogo** cumple la regla "todo anuncio explica el producto" de la Regla 4b: producto visible, una línea de mecanismo y el beneficio. Los formatos puramente nativos (texto sobre negro, titular, pantalla dividida, historia) son los que más fallan si se olvida.
 
 ## Ángulos (lista de @keko_mkt, DbWsocPPw6P)
 El dolor que resuelve · antes y después · lo que dice un cliente real · lo que dice un experto · por qué es distinto a la competencia · el mito desmentido · el error del que no lo usa · la objeción n.º 1 · para quién no es · precio por día · qué pasa a los 7, 14 y 30 días · cómo se hace · la rutina donde encaja · el regalo perfecto · qué pasa si no lo compras · la historia de por qué lo creamos · el material que nadie más usa · queda poco stock (solo si es verdad).
