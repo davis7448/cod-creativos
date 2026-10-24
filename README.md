@@ -4,7 +4,7 @@ Plugin de **Claude Code** para tiendas de e-commerce **contraentrega (COD)** en 
 
 1. **Investigación de anuncios** — Meta Ad Library (API + navegador), TikTok, AliExpress, Mercado Libre y landings extranjeras. Gemelos exactos verificados con fotogramas, descarga de videos de referencia, bancos de ángulos, ofertas y plan de testeo, y una investigación creativa completa publicada como Artifact.
 2. **Landing en Shopify** — packshot fiel con Codex, 7 piezas verticales por estilo de categoría, portada con precios, GIFs del proveedor, packs de cantidad en el formulario contraentrega y revisión en celular.
-3. **Videos con voz** — guiones por referencia, voces con OmniVoice validadas con whisper, música original, b-roll de fábrica y de stock, montaje con ffmpeg y subida a Meta por API.
+3. **Videos con voz** — guiones por referencia, un avatar con su propia voz por guion (VoxCPM2, actuada frase por frase y validada con whisper), música original, b-roll de fábrica y de stock, montaje con ffmpeg y subida a Meta por API.
 
 Funciona con cualquier tienda: cada usuario corre el setup y configura la suya.
 
@@ -29,7 +29,8 @@ Reinicia Claude Code y escribe **"configura mi tienda"** (skill `setup-creativos
 | MCP de **Playwright** | investigación en el navegador, capturas, portadas | `claude mcp add playwright -- npx @playwright/mcp@latest` |
 | **ffmpeg** | montaje, GIFs, hojas de fotogramas | `brew install ffmpeg` |
 | **Codex CLI** | packshot y piezas de la landing | `npm i -g @openai/codex` + `codex login` |
-| **OmniVoice + mlx-whisper** (Python 3.11) | voces y validación | ver `skills/ads-invest/references/voces-omnivoice.md` (Mac con chip Apple) |
+| **VoxCPM2** (`mlx-audio`, Python 3.11) | voces por avatar | ver `skills/ads-invest/references/voces-voxcpm2.md` (Mac con chip Apple) |
+| **mlx-whisper + librosa** (otro entorno; incluye OmniVoice de respaldo) | validación del guion, tono y género de la voz | ver `skills/ads-invest/references/voces-omnivoice.md` |
 | Stock licenciado (opcional) | b-roll de contexto | p. ej. conector de Magnific/Freepik |
 | Plugin **cod-ops** (opcional) | contabilidad, One CBO, logística | `/plugin marketplace add davis7448/cod-ops` |
 

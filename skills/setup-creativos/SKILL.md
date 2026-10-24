@@ -30,12 +30,13 @@ Corre estas verificaciones y reporta ✅/❌:
 ```bash
 ffmpeg -version | head -1                       # montaje de videos, GIFs, hojas de fotogramas
 codex --version                                 # imágenes del producto (packshot, piezas, escenas)
-~/.venvs/voz/bin/python -c "import omnivoice, mlx_whisper, librosa; print('voz ok')"   # voces y validación
+~/.venvs/voz-mlx/bin/python -c "import mlx_audio, soundfile; print('voxcpm ok')"     # voces por avatar (VoxCPM2)
+~/.venvs/voz/bin/python -c "import mlx_whisper, librosa, transformers; print('validación ok')"   # whisper, tono y género (+ OmniVoice de respaldo)
 uname -m                                        # arm64 = Mac con chip Apple (requerido para mlx)
 ```
 - **ffmpeg:** `brew install ffmpeg`.
 - **Codex CLI:** `npm i -g @openai/codex` y `codex login` (requiere cuenta de ChatGPT/OpenAI con generación de imágenes).
-- **Voces:** ver `skills/ads-invest/references/voces-omnivoice.md` § Instalación (uv + Python 3.11). Solo Mac con chip Apple; en otro equipo, adaptar a CUDA/CPU.
+- **Voces:** dos entornos separados (no se mezclan: `mlx-audio` rompe el `transformers` de OmniVoice). Motor principal **VoxCPM2** en `~/.venvs/voz-mlx`: `skills/ads-invest/references/voces-voxcpm2.md` § Instalación. Validación (whisper, tono, clasificador de género) y OmniVoice de respaldo en `~/.venvs/voz`: `skills/ads-invest/references/voces-omnivoice.md` § Instalación. Uv + Python 3.11, solo Mac con chip Apple; en otro equipo, adaptar a CUDA/CPU.
 - **Navegador (Playwright):** las skills usan un MCP de Playwright (`browser_navigate`, `browser_evaluate`, `browser_run_code_unsafe`). Si no hay ninguno, instala el oficial: `claude mcp add playwright -- npx @playwright/mcp@latest`.
 - **Conectores de claude.ai:** Meta Ads (Facebook), Shopify y, si tiene stock, Magnific. Se conectan desde claude.ai → Configuración → Conectores.
 - **Permisos de Meta:** crear o activar objetos en Meta puede pedir permiso. Sugiere agregar con `/permissions` las tools que vaya a usar (`ads_creative_upload_media`, `ads_create_ad_set`, `ads_create_creative`, `ads_create_ad`, `ads_activate_entity`, `ads_update_entity`).
