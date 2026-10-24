@@ -50,7 +50,10 @@
 
 ## 8b. Estáticos (sin escribir HTML a disco)
 - Se componen en el navegador: un servidor local de la carpeta de medios (`npx -y http-server <media> -p <puerto> -s` en segundo plano) y, en Playwright, `document.open(); document.write(html); document.close()` con las imágenes por ruta relativa → `page.screenshot` a 1080×1350 (4:5) y 1080×1920 (9:16, con los 340 px de abajo libres). Así no hace falta guardar archivos HTML (que un arnés puede bloquear).
+- **Cada estático sale en las dos medidas** y van juntos en un solo anuncio (4:5 al feed, 9:16 a historias y reels): ver `montaje-ffmpeg.md` § Subida.
 - Subtítulos de video transparentes con el mismo truco y `omitBackground: true`.
+- **Los formatos nativos tienen que parecer la interfaz real** (corrección real: "el de noticia no parece noticiero"). Noticia = nota de portal: cabecera con un nombre de portal **inventado** (nunca un medio real), menú y lupa, barra de secciones, titular en letra de periódico (serif), autor y "2 min de lectura", foto con pie de foto que explique el mecanismo, un párrafo y el precio con "Ver más →". Lo mismo con historia de IG, WhatsApp o Google: si no se confunde con la app de verdad, no sirve.
+- **Encuadre de las fotos** (corrección real: "las fotos están mal encuadradas"): en cada recuadro se ve completo lo que el texto nombra (la cara entera con las manos poniéndose el producto, el control completo con su pantalla). Ajusta `object-position` por foto y revisa que el precio o la píldora no tapen el último paso en la versión 9:16.
 - Antes de mostrarlos: una hoja con todos en miniatura (`hstack`/`vstack`) y la **prueba de los 2 segundos** de la Regla 4b: producto visible + línea de mecanismo + beneficio en cada pieza. Errores vistos: la tarjeta del producto tapando la píldora de envío, texto quemado de otra imagen asomándose en un recorte y espacio en blanco al final de una tabla.
 
 ## 9. QA y entrega

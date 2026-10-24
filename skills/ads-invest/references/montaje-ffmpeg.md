@@ -62,12 +62,30 @@ build MM04 voz/vo_MM04.wav musica/music_MM04.wav MM_VN04_regalo_navidad_CON_VOZ
 ## Subida a Meta (después del ok del usuario)
 IDs (cuenta, página, Instagram, píxel, país): de `CONFIG-TIENDA.md`.
 1. **Miniatura propia por video:** `ffmpeg -ss 0.5 -i X.mp4 -frames:v 1 -q:v 2 thumb_X.jpg` (el gancho con su subtítulo).
-2. **URL pública vía Shopify Files:** `stagedUploadsCreate` (resource FILE, mp4 y jpg en una sola llamada, con `fileSize`) → POST multipart con `curl -F` por cada destino (los parámetros en el orden recibido y `file=@…` al final; esperar 201) → `fileCreate` con los `resourceUrl` → `nodes(ids)` hasta `READY` para leer `url` (cdn.shopify.com). Para no copiar firmas a mano: leer la respuesta desde el jsonl de la sesión (`~/.claude/projects/<proyecto>/<sesión>.jsonl`), filtrando las líneas con `x-goog-signature` que no contengan `python3`.
+2. **URL pública vía Shopify Files:** `stagedUploadsCreate` (resource FILE, mp4 y jpg en una sola llamada, con `fileSize`) → POST multipart con `curl -F` por cada destino (los parámetros en el orden recibido y `file=@…` al final; esperar 201) → `fileCreate` con los `resourceUrl` → `nodes(ids)` hasta `READY` para leer `url` (cdn.shopify.com). Para no copiar firmas a mano: leer la respuesta desde el jsonl de la sesión (`~/.claude/projects/<proyecto>/<sesión>.jsonl`), filtrando las líneas con `x-goog-signature` que no contengan `python3`. **Máximo 20 MB por archivo** (resource FILE): mide con `stat -f%z` antes; si un mp4 pasa, re-codifícalo subiendo el `-crf` (23–26, misma resolución) y vuelve a medir.
 3. `ads_creative_upload_media` (URL, VIDEO para el mp4 · IMAGE para la miniatura → `hash`) → `ads_get_ad_videos` con `video_ids` hasta `status` listo.
 4. `ads_create_ad_set` (un conjunto OPEN por video): `OFFSITE_CONVERSIONS`, `IMPRESSIONS`, `WEBSITE`, `promoted_object={"pixel_id":"<PIXEL_ID>","custom_event_type":"PURCHASE"}`, `targeting={"geo_locations":{"countries":["<CC>"]},"age_min":18,"age_max":65}`, sin presupuesto (la campaña es CBO).
 5. `ads_create_creative`: `video_id` + `image_hash` de su miniatura + `instagram_user_id` + `SHOP_NOW` + `link_url` con `utm_content=vn0X` + DOF con estas 9 funciones en OPT_OUT: `image_touchups, text_optimizations, adapt_to_placement, image_templates, image_uncrop, enhance_cta, product_extensions, site_extensions, video_auto_crop`. (`standard_enhancements` ya no se acepta).
 6. `ads_create_ad` con `{"creative_id":…}` → `ads_get_ad_entities` con `object_state=draft` → `ads_activate_entity` con `object_ids` (conjuntos + anuncios) y `publish_as_active=true` → verificar estados en vivo y la vista previa.
 
 **Campaña CBO ya publicada:** `ads_create_ad_set` responde "the parent campaign does not use CBO" aunque la campaña sí tenga presupuesto, porque valida contra el borrador. Arreglo probado: `ads_update_entity` en la campaña con el **mismo** `daily_budget` (no pausa nada) → crear conjuntos, creativos y anuncios → `ads_get_ad_entities` con `object_state=draft` → `ads_activate_entity` con la campaña, los conjuntos y los anuncios en `object_ids` y `publish_as_active=true`. Los anuncios pasan a ACTIVE / IN_PROCESS (revisión de Meta).
+
+### Estáticos: 4:5 + 9:16 en un solo anuncio
+Sube las dos imágenes con `ads_creative_upload_media` (IMAGE → `hash`) y crea el creativo con `placement_customizations` (sin `image_hash` suelto). La primera entrada, sin ubicaciones, es la de respaldo (feed); la segunda manda a historias y reels:
+```json
+"placement_customizations": [
+  {"image_hash": "<hash_4x5>"},
+  {"image_hash": "<hash_9x16>", "publisher_platforms": ["facebook","instagram"],
+   "facebook_positions": ["story","facebook_reels"], "instagram_positions": ["story","reels"]}]
+```
+Más `page_id`, `instagram_user_id`, `link_url`, `message`, `headline`, `description`, `SHOP_NOW` y el mismo DOF con las 9 funciones en OPT_OUT. Verifica con `ads_get_ad_preview` en un formato de feed y uno de historias.
+
+### RECON con presupuesto por conjunto (ABO) por API
+1. `ads_create_campaign` OUTCOME_SALES **sin** presupuesto ni `bid_strategy` de campaña. Si la cuenta tiene catálogo, Meta le pone solo un `promoted_object` de catálogo a la campaña: no estorba si los conjuntos van con píxel/PURCHASE y los creativos son video o imagen propios (confírmalo con la vista previa).
+2. Un `ads_create_ad_set` por ángulo con la misma audiencia: `daily_budget`, `bid_strategy: LOWEST_COST_WITHOUT_CAP`, `attribution_spec=[{"event_type":"CLICK_THROUGH","window_days":7}]`, el píxel/PURCHASE, `targeting` del país 18–65 (Advantage+) y, si se programa, `start_time` con zona (`2026-10-25T05:00:00-0500`).
+3. ⚠️ **Monedas sin centavos (COP, CLP, PYG…) = unidades enteras**, aunque la herramienta diga "cents": $20.000/día = `20000`. Caso real: se puso `2000000` y quedaron 4 conjuntos a $2.000.000/día (se corrigió antes del arranque). **Antes de publicar, compara con el `daily_budget` de un conjunto que ya esté corriendo** (`ads_get_ad_entities`) y vuelve a leerlo después.
+4. Creativos → anuncios → `ads_get_ad_entities` con `object_state=draft` → `ads_activate_entity` con campaña + conjuntos + anuncios en `object_ids` y `publish_as_active=true`.
+5. **Editar algo ya publicado** (presupuesto, nombre): `ads_update_entity` queda en borrador (`is_draft=true`) → `ads_activate_entity` con esos `object_ids` y `publish_as_active=false` → leer de vuelta. Pausar (`{"status":"PAUSED"}` solo) se aplica directo: no actives después.
+6. UTM por anuncio: `utm_campaign=<prod>_recon1&utm_content=<angulo>_<formato>`. Registra cada anuncio en `REGISTRO-FORMATOS.md`.
 
 **Permisos:** el clasificador del modo automático puede bloquear `ads_creative_upload_media` y las llamadas que crean o activan objetos en Meta. En ese caso, parar y pedirle al usuario que agregue las reglas de permitir con `/permissions` (`mcp__claude_ai_Facebook__ads_creative_upload_media`, `ads_create_ad_set`, `ads_create_creative`, `ads_create_ad`, `ads_activate_entity`). No reintentar en bucle.

@@ -12,7 +12,7 @@ Probado el 2026-10-23 con un masajeador de cabeza: 9 clips 9:16 de 5 s para una 
 5. **Conexiones** (`spaces_add_connection`, una llamada): `creation.output` → `video-generator.first-frame`. **No** uses `references` a la vez que `first-frame` (son excluyentes en la mayoría de modelos).
 6. **Verificar** un nodo con `spaces_get_nodes` (modelo, duración, prompt y la conexión).
 7. **No correr nada.** Dale al usuario el link y la tabla de clips. Si el modelo elegido no está entre sus ilimitados, que lo cambie en cada nodo.
-8. Cuando el usuario avise, descarga los clips, haz QA con fotogramas (el producto no se deforma, no aparece texto inventado) y móntalos con la función `build` ([montaje-ffmpeg.md](montaje-ffmpeg.md)) como escenas `f` (pantalla completa).
+8. Cuando el usuario avise, descarga los clips, haz QA con fotogramas (el producto no se deforma, no aparece texto inventado). **Revisa también el último segundo de cada clip**, no solo el centro: Kling tiende a deformar el producto al final (caso real: en un clip de abrir la caja, el masajeador de cabeza terminó convertido en uno de cuello; se usaron solo los primeros 2,5 s). Hoja de QA: `fps=2,scale=180:320,tile=10x1` sobre el clip entero, y anota qué tramo sirve de cada clip. Después móntalos con la función `build` ([montaje-ffmpeg.md](montaje-ffmpeg.md)) como escenas `f` (pantalla completa).
 
 ## Modelo
 - Elegir con `spaces_node_types_search` (`video-generator`) y leer duraciones con `video_models_list`. Para clips mudos con primer fotograma, Kling 2.5 (5 o 10 s, 720p/1080p) funcionó bien de base. Con 720p, Kling 2.5 exige primer fotograma.

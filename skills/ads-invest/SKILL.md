@@ -130,7 +130,7 @@ Pipeline probado: guion por referencia → **avatar con voz propia en VoxCPM2** 
 - Guion, voz, música, material, stock y QA: [references/produccion-creativos.md](references/produccion-creativos.md).
 - **Voces por avatar (motor recomendado):** cada guion tiene un avatar (edad, región, personalidad) y el avatar tiene su propia voz con acento acorde; guion en estilo UGC de corrido y actuación dirigida frase por frase: [references/voces-voxcpm2.md](references/voces-voxcpm2.md).
 - Respaldo con OmniVoice (instalación, API, errores conocidos): [references/voces-omnivoice.md](references/voces-omnivoice.md).
-- Montaje con ffmpeg (función lista para copiar) y subida a Meta paso a paso: [references/montaje-ffmpeg.md](references/montaje-ffmpeg.md).
+- Montaje con ffmpeg (función lista para copiar) y subida a Meta paso a paso: [references/montaje-ffmpeg.md](references/montaje-ffmpeg.md). Incluye los estáticos 4:5 + 9:16 en un solo anuncio y la RECON con presupuesto por conjunto (ojo con las monedas sin centavos).
 - Clips de uso con IA cuando el material del proveedor no muestra el producto en uso: Claude arma el Space de Magnific (imagen inicial fiel + prompt + modelo) y **el usuario genera** con sus modelos ilimitados: [references/video-ia-spaces.md](references/video-ia-spaces.md).
 
 La **landing** del producto (packshot, 7 piezas, GIFs, Shopify, packs) es otra skill: `landing-cod`.
